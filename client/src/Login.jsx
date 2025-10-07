@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -18,13 +19,27 @@ function Login() {
                 }
 
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                if (err.response && err.response.data && err.response.data.error) {
+                    setError(err.response.data.error); //show backend error
+                } else {
+                    setError("An unexpected error occurred.");
+                }
+            })
     }
 
     return (
         <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
             <div className="bg-white p-3 rounded w-25">
                 <h2 style={{ textAlign: "center" }}>Login</h2>
+                
+                {error && (
+                    <div className="alert alert-danger text-center py-1">
+                        {error}
+                    </div>
+                )}
+                
+
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="email">

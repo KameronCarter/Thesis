@@ -11,24 +11,37 @@ mongoose.connect("mongodb://127.0.0.1:27017/user");
 
 app.post("/login", (req, res) => {
     const { email, password } = req.body;
+
     userModel.findOne({ email: email })
         .then(user => {
             if (user) {
                 if (user.password === password) {
                     res.json("Login Successful");
                 } else {
-                    res.json("Invalid Credentials");
+                    res.status(400).json({ error: "Invalid Credentials" });
                 }
             } else {
-                res.json("User not registered");
+                res.status(404).json({ error: "User not registered" });
             }
         })
 })
 
 app.post('/register', (req, res) => {
-    userModel.create(req.body)
-        .then(users => res.json(users))
-        .catch(err => res.json(err))
+    const { email } = req.body;
+
+    userModel.findOne({ email: email }) //Searches the database for the email
+        .then(existingUser => {
+            if (existingUser) {
+                return res.status(400).json({ error: 'Email already in use' });
+            }
+
+            userModel.create(req.body)  //After checking if email exists, creates new user in the database
+                .then(newUser => res.status(201).json(newUser))  //Stores the data of new user in newUser variable
+                .catch(err => res.status(500).json({ error: 'Error creating user', details: err })); //Catches any error that occurs while creating new user
+        })
+        .catch(err => {
+            res.status(500).json({ error: 'Server error' });
+        });
 })
 
 app.listen(3001, () => {
