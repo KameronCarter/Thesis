@@ -18,10 +18,10 @@ app.post("/login", (req, res) => {
                 if (user.password === password) {
                     res.json("Login Successful");
                 } else {
-                    res.status(400).json({ error: "Invalid Credentials" });
+                    res.status(401).json({ error: "Invalid Credentials" }); //Sets error message and send status code 401 (Invalid Request)
                 }
             } else {
-                res.status(404).json({ error: "User not registered" });
+                res.status(400).json({ error: "User not registered" });
             }
         })
 })
