@@ -14,9 +14,22 @@
 
 .content {
     flex: 1;
-    margin-right: 300px;
+    margin-right: 200px;
     /* Space for fixed sidebar */
 }
+
+.right-section {
+    margin-left: auto;
+    width: 75%;
+    text-align: right;
+}
+
+.left-section {
+    margin-right: auto;
+    width: 75%;
+    text-align: left;
+}
+
 
 .sidebar {
     right: 20px;
@@ -27,4 +40,16 @@
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 6px;
+}
+
+/*Below is styling for buttons for login and signup pages*/
+.btn-custom {
+    background-color: maroon;
+    color: orange;
+    border: none;
+}
+
+.btn-custom:hover {
+    background-color: #640000; /* darker shade on hover */
+    color: orange;
 }

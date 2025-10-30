@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import './Home.css';
 
+//Dr. Sahu Github: pratapsahu1980
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -32,13 +34,13 @@ function Login() {
         <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
             <div className="bg-white p-3 rounded w-25">
                 <h2 style={{ textAlign: "center" }}>Login</h2>
-                
+
                 {error && (
                     <div className="alert alert-danger text-center py-1">
                         {error}
                     </div>
                 )}
-                
+
 
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
@@ -67,14 +69,16 @@ function Login() {
                             onChange={(e) => setPassword(e.target.value)}  //Assigns value in input field to setPassword variable
                         />
                     </div>
-                    <button type="submit" className="btn btn-success w-100 rounded-0">
+                    <button type="submit" className="btn btn-custom w-100 rounded-3">
                         Login
                     </button>
                 </form>
-                <p style={{ textAlign: "center" }}>
+
+                <p className="text-center fs-6 m-2">
                     Don't have an account?
                 </p>
-                <Link to="/register" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">Sign Up</Link>
+                <Link to="/register" className="btn btn-custom w-100 rounded-3">Sign Up</Link>
+                <Link to="/" className="btn btn-custom w-100 rounded-3 mt-2">Home</Link>
             </div>
         </div>
     )

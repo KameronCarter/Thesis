@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import './Home.css';
 
 function Signup() {
     const [name, setName] = useState("");
@@ -10,7 +11,7 @@ function Signup() {
     const [error, setError] = useState(""); //State to hold error message
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e) => {   //Handles form submission using an event object passed as a parameter (e in this case)
         e.preventDefault();
         setError(""); //Clears errors to allow me to post that the email is already in use to the user instead of in the console
 
@@ -81,12 +82,12 @@ function Signup() {
                             onChange={(e) => setPassword(e.target.value)}  //Assigns value in input field to setPassword variable
                         />
                     </div>
-                    <button type="submit" className="btn btn-success w-100 rounded-0">
+                    <button type="submit" className="btn btn-custom w-100 rounded-3">
                         Register
                     </button>
                 </form>
                 <p style={{ textAlign: "center" }}>Already have an account?</p>
-                <Link to="/login" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">
+                <Link to="/login" className="btn btn-custom w-100 rounded-3">
                     Login
                 </Link>
 

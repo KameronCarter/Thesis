@@ -5,7 +5,7 @@ function Navbar() {
     return (
         <>
             <nav className="navbar">
-                <ul className='navbar-links'>
+                <ul>
                     <li><Link to="/Login">Login/Signup</Link></li>
                 </ul>
             </nav>
