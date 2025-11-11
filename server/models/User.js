@@ -7,4 +7,5 @@ const userSchema = new mongoose.Schema({
 });
 
 const userModel = mongoose.model("users", userSchema);   //Creates users table in database with userSchema
+
 module.exports = userModel;

@@ -1,11 +1,24 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Signup from './pages/Signup';
-import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Home from './pages/Home.jsx';
 
 function App() {
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.removeItem("loggedInUser");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
 
   return (
     <BrowserRouter>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import './Home.css';
+import { useAuth } from "../components/AuthContext";
 
 //Dr. Sahu Github: pratapsahu1980
 function Login() {
@@ -10,6 +11,7 @@ function Login() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const { setIsLoggedIn } = useAuth();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,6 +20,7 @@ function Login() {
                 console.log(result);
                 if (result.data === "Login Successful") {
                     navigate("/");
+                    setIsLoggedIn(true);
                 }
 
             })
