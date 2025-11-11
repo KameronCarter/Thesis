@@ -28,8 +28,7 @@ function Navbar() {
                 ) : (
                     // When user is NOT logged in
                     <>
-                        <li><Link to="/Login">Login</Link></li>
-                        <li><Link to="/Signup">Signup</Link></li>
+                        <li><Link to="/Login">Login/Signup</Link></li>
                     </>
                 )}
             </ul>
