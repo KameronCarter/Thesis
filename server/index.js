@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const userModel = require('./models/User');
+const budgetModel = require('./models/Budget');
 
 const app = express();
 app.use(express.json());
@@ -43,6 +44,33 @@ app.post('/register', (req, res) => {
             res.status(500).json({ error: 'Server error' });
         });
 })
+
+app.post('/profile', async (req, res) => {
+    try {
+        const { totalAmount, category, email } = req.body;
+
+        if (!totalAmount || !category || !email) {
+            return res.status(400).json({ error: "Total amount, category, and email are required." });
+        }
+
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ error: "User not found." });
+        }
+
+        await budgetModel.create({
+            totalAmount,
+            category,
+            userId: user._id
+        });
+
+        res.status(201).json("Budget Created Successfully");
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Error creating budget", details: err.message });
+    }
+});
+
 
 app.listen(3001, () => {
     console.log("Server is running");

@@ -22,12 +22,13 @@ function Navbar() {
                     // When user is logged in
                     <>
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/Profile">Profile</Link></li>
+                        <li><Link to="/profile">Profile</Link></li>
                         <li><button onClick={handleLogout}>Logout</button></li>
                     </>
                 ) : (
                     // When user is NOT logged in
                     <>
+                        <li><Link to="/profile">Profile</Link></li>
                         <li><Link to="/Login">Login/Signup</Link></li>
                     </>
                 )}

@@ -1,10 +1,19 @@
 const mongoose = require("mongoose");
 
 const budgetSchema = new mongoose.Schema({
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: "users", required: true },
-    category: String,
-    totalAmount: Number,
-    createdAt: { type: Date, default: Date.now }
+    totalAmount: {
+        type: Number,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',   // This links the budget to a user
+        required: true
+    }
 });
 
 const budgetModel = mongoose.model("budgets", budgetSchema);

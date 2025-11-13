@@ -11,7 +11,7 @@ function Login() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
-    const { setIsLoggedIn } = useAuth();
+    const { setIsLoggedIn, setUser } = useAuth();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,8 +19,9 @@ function Login() {
             .then(result => {
                 console.log(result);
                 if (result.data === "Login Successful") {
-                    navigate("/");
                     setIsLoggedIn(true);
+                    setUser({ email });
+                    navigate("/");
                 }
 
             })

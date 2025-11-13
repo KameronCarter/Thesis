@@ -4,6 +4,7 @@ import Signup from './pages/Signup';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Home from './pages/Home.jsx';
+import Profile from './pages/Profile.jsx';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/register' element={<Signup />}></Route>
         <Route path='/login' element={<Login />}></Route>
+        <Route path='/profile' element={<Profile />}></Route>
       </Routes>
     </BrowserRouter>
   )
