@@ -1,0 +1,37 @@
+/* Container for whole page */
+.budgets-container {
+    max-width: 900px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+/* Grid layout */
+.budgets-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Individual budget card */
+.budget-card {
+    width: 280px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+.budget-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Title inside card */
+.budget-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}

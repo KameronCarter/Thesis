@@ -18,9 +18,13 @@ function Login() {
         axios.post('http://localhost:3001/login', { email, password })
             .then(result => {
                 console.log(result);
-                if (result.data === "Login Successful") {
-                    setIsLoggedIn(true);
-                    setUser({ email });
+                if (result.data.message === "Login Successful") {
+                    setIsLoggedIn(true);   //Set login status to true for context of whole site
+                    setUser({   //This object holds the user information so it can be called throughout the app i.e. for the budgets page
+                        _id: result.data.user._id,
+                        email: result.data.user.email,
+                        name: result.data.user.name
+                    });
                     navigate("/");
                 }
 

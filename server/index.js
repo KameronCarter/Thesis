@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const userModel = require('./models/User');
 const budgetModel = require('./models/Budget');
+const budgetRoutes = require("./routes/budgets");
 
 const app = express();
 app.use(express.json());
@@ -17,7 +18,14 @@ app.post("/login", (req, res) => {
         .then(user => {
             if (user) {
                 if (user.password === password) {
-                    res.json("Login Successful");
+                    res.json({
+                        message: "Login Successful",
+                        user: {
+                            _id: user._id,
+                            email: user.email,
+                            name: user.name
+                        }
+                    });
                 } else {
                     res.status(401).json({ error: "Invalid Credentials" }); //Sets error message and send status code 401 (Meaning: Invalid Request)
                 }
@@ -25,7 +33,7 @@ app.post("/login", (req, res) => {
                 res.status(400).json({ error: "User not registered" });
             }
         })
-})
+});
 
 app.post('/register', (req, res) => {
     const { email } = req.body;
@@ -47,10 +55,10 @@ app.post('/register', (req, res) => {
 
 app.post('/profile', async (req, res) => {
     try {
-        const { totalAmount, category, email } = req.body;
+        const { totalAmount, category, email, expenses } = req.body;
 
-        if (!totalAmount || !category || !email) {
-            return res.status(400).json({ error: "Total amount, category, and email are required." });
+        if (!totalAmount || !category || !email || !expenses) {
+            return res.status(400).json({ error: "Total amount, category, email, and expenses are required." });
         }
 
         const user = await userModel.findOne({ email });
@@ -61,6 +69,7 @@ app.post('/profile', async (req, res) => {
         await budgetModel.create({
             totalAmount,
             category,
+            expenses,
             userId: user._id
         });
 
@@ -70,6 +79,9 @@ app.post('/profile', async (req, res) => {
         res.status(500).json({ error: "Error creating budget", details: err.message });
     }
 });
+
+app.use("/budgets", budgetRoutes);
+
 
 
 app.listen(3001, () => {

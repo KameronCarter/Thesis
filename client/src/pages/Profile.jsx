@@ -5,13 +5,11 @@ Create two buttons: one for viewing profile details(changing password, email, et
 The button for viewing budgets should also contain a button for creating a new budget 
 that button should replace the div by using document.getElementById to a form to add to budget fields.
 
-This should be connected to the user and budgetSchema to hold all information
-
 Other optional notes is to add a way to delete a profile in the client side.
 */
 
 //import React from 'react';
-//import './Profile.css';
+//Since this is using a form just like Login and Signup pages, styling will be made with bootstrap
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -22,6 +20,7 @@ import { useAuth } from "../components/AuthContext";
 
 function Profile() {
     const [totalAmount, setTotalAmount] = useState("");
+    const [expenses, setExpenses] = useState("");
     const [category, setCategory] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
@@ -29,11 +28,20 @@ function Profile() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3001/profile', { totalAmount, category, email: user.email, })
+        if (category === "traditional" || category === "Traditional") {
+            const spendingMoney = totalAmount - expenses;
+            localStorage.setItem("spendingMoney", spendingMoney);
+        }
+
+        axios.post('http://localhost:3001/profile', { totalAmount, category, email: user.email, expenses })
             .then(result => {
                 console.log(result);
                 if (result.data === "Budget Created Successfully") {
-                    navigate("/");
+                    if (category === "traditional" || category === "Traditional") {
+                        alert("Budget Created Successfully! You have $" + localStorage.getItem("spendingMoney") + " available for spending money each month.");
+                    } else {
+                        navigate("/");
+                    }
                 }
 
             })
@@ -76,16 +84,29 @@ function Profile() {
                                 />
                             </div>
                             <div className="mb-3">
-                                <label htmlFor="amount">
-                                    <strong>Total Amount of Money Available</strong>
+                                <label htmlFor="income">
+                                    <strong>Monthly Income</strong>
                                 </label>
                                 <input
                                     type="text"
-                                    placeholder="Enter Total Amount"
+                                    placeholder="Enter Monthly Income"
                                     autoComplete="off"
                                     name="amount"
                                     className="form-control rounded-0"
                                     onChange={(e) => setTotalAmount(e.target.value)}  //Assigns value in input field to setTotalAmount variable
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="expenses">
+                                    <strong>Monthly Expenses</strong>
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter Monthly Expenses"
+                                    autoComplete="off"
+                                    name="expenses"
+                                    className="form-control rounded-0"
+                                    onChange={(e) => setExpenses(e.target.value)}  //Assigns value in input field to setExpenses variable
                                 />
                             </div>
                             <button type="submit" className="btn btn-custom w-100 rounded-3">

@@ -23,6 +23,7 @@ function Navbar() {
                     <>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/profile">Profile</Link></li>
+                        <li><Link to="/budgets">Budgets</Link></li>
                         <li><button onClick={handleLogout}>Logout</button></li>
                     </>
                 ) : (
