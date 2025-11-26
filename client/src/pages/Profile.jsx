@@ -7,9 +7,6 @@ that button should replace the div by using document.getElementById to a form to
 
 Other optional notes is to add a way to delete a profile in the client side.
 */
-
-//import React from 'react';
-//Since this is using a form just like Login and Signup pages, styling will be made with bootstrap
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -19,111 +16,31 @@ import { useAuth } from "../components/AuthContext";
 //Dr. Sahu Github: pratapsahu1980
 
 function Profile() {
-    const [totalAmount, setTotalAmount] = useState("");
-    const [expenses, setExpenses] = useState("");
-    const [category, setCategory] = useState("");
-    const [error, setError] = useState("");
-    const navigate = useNavigate();
-    const { isLoggedIn, setIsLoggedIn, user, } = useAuth();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (category === "traditional" || category === "Traditional") {
-            const spendingMoney = totalAmount - expenses;
-            localStorage.setItem("spendingMoney", spendingMoney);
-        }
 
-        axios.post('http://localhost:3001/profile', { totalAmount, category, email: user.email, expenses })
-            .then(result => {
-                console.log(result);
-                if (result.data === "Budget Created Successfully") {
-                    if (category === "traditional" || category === "Traditional") {
-                        alert("Budget Created Successfully! You have $" + localStorage.getItem("spendingMoney") + " available for spending money each month.");
-                    } else {
-                        navigate("/");
-                    }
-                }
-
-            })
-            .catch(err => {
-                if (err.response && err.response.data && err.response.data.error) {
-                    console.error(err);
-                    setError(err.response.data.error); //show backend error
-                } else {
-                    setError("An unexpected error occurred.");
-                }
-            })
-    }
 
     return (
         <>
-            {isLoggedIn ? (
-                <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
-                    <div className="bg-white p-3 rounded w-25">
-                        <h2 style={{ textAlign: "center" }}>Create Budget</h2>
+            <div className="site-background">
+                <div className="site-shape">
 
-                        {error && (
-                            <div className="alert alert-danger text-center py-1">
-                                {error}
-                            </div>
-                        )}
+                    <h2 style={{ textAlign: "center" }}>Profile Page</h2>
+                    <p style={{ textAlign: "center" }}>Welcome to your profile! Here you can view and manage your personal information and budgets.</p>
 
 
-                        <form onSubmit={handleSubmit}>
-                            <div className="mb-3">
-                                <label htmlFor="category">
-                                    <strong>Type of Budget</strong>
-                                </label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter Budget Category"
-                                    autoComplete="off"
-                                    name="category"
-                                    className="form-control rounded-0"
-                                    onChange={(e) => setCategory(e.target.value)}  //Assigns value in input field to setCategory variable
-                                />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="income">
-                                    <strong>Monthly Income</strong>
-                                </label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter Monthly Income"
-                                    autoComplete="off"
-                                    name="amount"
-                                    className="form-control rounded-0"
-                                    onChange={(e) => setTotalAmount(e.target.value)}  //Assigns value in input field to setTotalAmount variable
-                                />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="expenses">
-                                    <strong>Monthly Expenses</strong>
-                                </label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter Monthly Expenses"
-                                    autoComplete="off"
-                                    name="expenses"
-                                    className="form-control rounded-0"
-                                    onChange={(e) => setExpenses(e.target.value)}  //Assigns value in input field to setExpenses variable
-                                />
-                            </div>
-                            <button type="submit" className="btn btn-custom w-100 rounded-3">
-                                Create Budget
-                            </button>
-                        </form>
-                        <Link to="/" className="btn btn-custom w-100 rounded-3 mt-2">Home</Link>
+                    <div className="d-flex justify-content-center">
+                        <Link to="/budgets" className="btn btn-custom w-25 rounded-3 m-2">
+                            View Your Budgets
+                        </Link>
+                        <Link to="/create-budget" className="btn btn-custom w-25 rounded-3 m-2">
+                            Create New Budget
+                        </Link>
+                        <Link to="/" className="btn btn-custom w-25 rounded-3 m-2">
+                            Home
+                        </Link>
                     </div>
                 </div>
-            ) : (
-                <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
-                    <div className="bg-white p-3 rounded w-25">
-                        <h2 style={{ textAlign: "center" }}>Please Log In</h2>
-                        <Link to="/login" className="btn btn-custom w-100 rounded-3 mt-2">Login</Link>
-                    </div>
-                </div>
-            )}
+            </div>
         </>
     );
 }

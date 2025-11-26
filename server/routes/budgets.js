@@ -11,5 +11,19 @@ router.get("/:userId", async (req, res) => {
         res.status(500).json({ error: "Server error" });
     }
 });
+// DELETE a specific budget by ID
+router.delete("/delete/:id", async (req, res) => {
+    try {
+        const budget = await Budget.findByIdAndDelete(req.params.id);
+
+        if (!budget) {
+            return res.status(404).json({ error: "Budget not found" });
+        }
+
+        res.json({ message: "Budget deleted successfully" });
+    } catch (err) {
+        res.status(500).json({ error: "Server error" });
+    }
+});
 
 module.exports = router;

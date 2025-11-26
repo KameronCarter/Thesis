@@ -18,6 +18,14 @@ const budgetSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    spendingMoney: {
+        type: Number,
+        required: true,
+    },
+    savingsMoney: {
+        type: Number,
+        required: false,
+    }
 });
 
 const budgetModel = mongoose.model("budgets", budgetSchema);

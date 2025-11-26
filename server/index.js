@@ -55,7 +55,7 @@ app.post('/register', (req, res) => {
 
 app.post('/profile', async (req, res) => {
     try {
-        const { totalAmount, category, email, expenses } = req.body;
+        const { totalAmount, category, email, expenses, spendingMoney, savingsMoney } = req.body;
 
         if (!totalAmount || !category || !email || !expenses) {
             return res.status(400).json({ error: "Total amount, category, email, and expenses are required." });
@@ -70,6 +70,8 @@ app.post('/profile', async (req, res) => {
             totalAmount,
             category,
             expenses,
+            spendingMoney,
+            savingsMoney,
             userId: user._id
         });
 
