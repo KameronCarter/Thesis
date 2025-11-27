@@ -60,7 +60,7 @@ function CreateBudget() {
         }
 
 
-        axios.post('http://localhost:3001/profile', { totalAmount, category, email: user.email, expenses, spendingMoney: localStorage.getItem("spendingMoney"), savingsMoney: localStorage.getItem("savingsMoney"), forNeeds: localStorage.getItem("forNeeds") })
+        axios.post('http://localhost:3001/create-budget', { totalAmount, category, email: user.email, expenses, spendingMoney: localStorage.getItem("spendingMoney"), savingsMoney: localStorage.getItem("savingsMoney"), forNeeds: localStorage.getItem("forNeeds") })
             .then(result => {
                 console.log(result);
                 if (result.data === "Budget Created Successfully") {
