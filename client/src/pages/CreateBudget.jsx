@@ -60,7 +60,7 @@ function CreateBudget() {
         }
 
 
-        axios.post('http://localhost:3001/profile', { totalAmount, category, email: user.email, expenses, spendingMoney: localStorage.getItem("spendingMoney"), savingsMoney: localStorage.getItem("savingsMoney"), forNeeds: localStorage.getItem("forNeeds")  })
+        axios.post('http://localhost:3001/profile', { totalAmount, category, email: user.email, expenses, spendingMoney: localStorage.getItem("spendingMoney"), savingsMoney: localStorage.getItem("savingsMoney"), forNeeds: localStorage.getItem("forNeeds") })
             .then(result => {
                 console.log(result);
                 if (result.data === "Budget Created Successfully") {
@@ -85,67 +85,69 @@ function CreateBudget() {
     return (
         <>
             {isLoggedIn ? (
-                <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
-                    <div className="bg-white p-3 rounded w-25">
-                        <h2 style={{ textAlign: "center" }}>Create Budget</h2>
+                <div className="site-background">
+                    <div className="d-flex justify-content-center align-items-center vh-100">
+                        <div className="bg-white p-3 rounded w-25 shadow-lg">
+                            <h2 style={{ textAlign: "center" }}>Create Budget</h2>
 
-                        {error && (
-                            <div className="alert alert-danger text-center py-1">
-                                {error}
-                            </div>
-                        )}
+                            {error && (
+                                <div className="alert alert-danger text-center py-1">
+                                    {error}
+                                </div>
+                            )}
 
 
-                        <form onSubmit={handleSubmit}>
-                            <div className="mb-3">
-                                <label htmlFor="category">
-                                    <strong>Type of Budget</strong>
-                                </label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter Budget Category"
-                                    autoComplete="off"
-                                    name="category"
-                                    className="form-control rounded-0"
-                                    onChange={(e) => setCategory(e.target.value)}  //Assigns value in input field to setCategory variable
-                                />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="income">
-                                    <strong>Monthly Income</strong>
-                                </label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter Monthly Income"
-                                    autoComplete="off"
-                                    name="amount"
-                                    className="form-control rounded-0"
-                                    onChange={(e) => setTotalAmount(e.target.value)}  //Assigns value in input field to setTotalAmount variable
-                                />
-                            </div>
-                            <div className="mb-3">
-                                <label htmlFor="expenses">
-                                    <strong>Monthly Expenses</strong>
-                                </label>
-                                <input
-                                    type="text"
-                                    placeholder="Enter Monthly Expenses"
-                                    autoComplete="off"
-                                    name="expenses"
-                                    className="form-control rounded-0"
-                                    onChange={(e) => setExpenses(e.target.value)}  //Assigns value in input field to setExpenses variable
-                                />
-                            </div>
-                            <button type="submit" className="btn btn-custom w-100 rounded-3">
-                                Create Budget
-                            </button>
-                        </form>
-                        <Link to="/profile" className="btn btn-custom w-100 rounded-3 mt-2">
-                            Back to Profile
-                        </Link>
-                        <Link to="/" className="btn btn-custom w-100 rounded-3 mt-2">
-                            Home
-                        </Link>
+                            <form onSubmit={handleSubmit}>
+                                <div className="mb-3">
+                                    <label htmlFor="category">
+                                        <strong>Type of Budget</strong>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter Budget Category"
+                                        autoComplete="off"
+                                        name="category"
+                                        className="form-control rounded-0"
+                                        onChange={(e) => setCategory(e.target.value)}  //Assigns value in input field to setCategory variable
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="income">
+                                        <strong>Monthly Income</strong>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter Monthly Income"
+                                        autoComplete="off"
+                                        name="amount"
+                                        className="form-control rounded-0"
+                                        onChange={(e) => setTotalAmount(e.target.value)}  //Assigns value in input field to setTotalAmount variable
+                                    />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="expenses">
+                                        <strong>Monthly Expenses</strong>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter Monthly Expenses"
+                                        autoComplete="off"
+                                        name="expenses"
+                                        className="form-control rounded-0"
+                                        onChange={(e) => setExpenses(e.target.value)}  //Assigns value in input field to setExpenses variable
+                                    />
+                                </div>
+                                <button type="submit" className="btn btn-custom w-100 rounded-3">
+                                    Create Budget
+                                </button>
+                            </form>
+                            <Link to="/profile" className="btn btn-custom w-100 rounded-3 mt-2">
+                                Back to Profile
+                            </Link>
+                            <Link to="/" className="btn btn-custom w-100 rounded-3 mt-2">
+                                Home
+                            </Link>
+                        </div>
                     </div>
                 </div>
             ) : (

@@ -4,6 +4,7 @@ const cors = require('cors');
 const userModel = require('./models/User');
 const budgetModel = require('./models/Budget');
 const budgetRoutes = require("./routes/budgets");
+const userRoutes = require("./routes/users");
 
 const app = express();
 app.use(express.json());
@@ -53,7 +54,7 @@ app.post('/register', (req, res) => {
         });
 })
 
-app.post('/profile', async (req, res) => {
+app.post('/create-budget', async (req, res) => {
     try {
         const { totalAmount, category, email, expenses, spendingMoney, savingsMoney } = req.body;
 
@@ -83,6 +84,7 @@ app.post('/profile', async (req, res) => {
 });
 
 app.use("/budgets", budgetRoutes);
+app.use("/users", userRoutes);
 
 
 

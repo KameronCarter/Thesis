@@ -8,6 +8,7 @@ function Signup() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [securityWord, setSecurityWord] = useState("");
     const [error, setError] = useState(""); //State to hold error message
     const navigate = useNavigate();
 
@@ -15,7 +16,7 @@ function Signup() {
         e.preventDefault();
         setError(""); //Clears errors to allow me to post that the email is already in use to the user instead of in the console
 
-        axios.post('http://localhost:3001/register', { name, email, password })
+        axios.post('http://localhost:3001/register', { name, email, password, securityWord })
             .then(result => {
                 console.log(result);
                 navigate("/login");
@@ -41,7 +42,7 @@ function Signup() {
                         {error}
                     </div>
                 )}
-                
+
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="name">
@@ -80,6 +81,19 @@ function Signup() {
                             name="password"
                             className="form-control rounded-0"
                             onChange={(e) => setPassword(e.target.value)}  //Assigns value in input field to setPassword variable
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="securityWord">
+                            <strong>Security Word</strong>
+                        </label>
+                        <input
+                            type="password"
+                            placeholder="Enter Security Word"
+                            autoComplete="off"
+                            name="securityWord"
+                            className="form-control rounded-0"
+                            onChange={(e) => setSecurityWord(e.target.value)}  //Assigns value in input field to setSecurityWord variable
                         />
                     </div>
                     <button type="submit" className="btn btn-custom w-100 rounded-3">

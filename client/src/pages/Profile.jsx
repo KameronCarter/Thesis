@@ -1,46 +1,53 @@
-// Profile Page
-/* Ideas
-Create two buttons: one for viewing profile details(changing password, email, etc.), another for viewing user's budgets.
-
-The button for viewing budgets should also contain a button for creating a new budget 
-that button should replace the div by using document.getElementById to a form to add to budget fields.
-
-Other optional notes is to add a way to delete a profile in the client side.
-*/
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import './Home.css';
 import { useAuth } from "../components/AuthContext";
 
-//Dr. Sahu Github: pratapsahu1980
-
 function Profile() {
-
-
+    const { isLoggedIn, user } = useAuth();  // assuming you store user email here
+    
+    const userName = user.name;
 
     return (
         <>
-            <div className="site-background">
-                <div className="site-shape">
+            {isLoggedIn ? (
+                <div className="site-background">
+                    <div className="d-flex justify-content-center align-items-center vh-100 ">
+                        <div className="site-shape">
 
-                    <h2 style={{ textAlign: "center" }}>Profile Page</h2>
-                    <p style={{ textAlign: "center" }}>Welcome to your profile! Here you can view and manage your personal information and budgets.</p>
+                            <h2 className=" d-flex justify-content-center">Profile Page</h2>
+                            <h4 className=" d-flex justify-content-center ">Welcome, {userName}!</h4>
+                            <p className="d-flex justify-content-center">
+                                Manage your personal information and budgets by clicking on the buttons below.
+                            </p>
 
+                            <div className="container w-50">
+                                <Link to="/change-password" className=" d-flex justify-content-center ">Change Password</Link>
+                            </div>
 
-                    <div className="d-flex justify-content-center">
-                        <Link to="/budgets" className="btn btn-custom w-25 rounded-3 m-2">
-                            View Your Budgets
-                        </Link>
-                        <Link to="/create-budget" className="btn btn-custom w-25 rounded-3 m-2">
-                            Create New Budget
-                        </Link>
-                        <Link to="/" className="btn btn-custom w-25 rounded-3 m-2">
-                            Home
-                        </Link>
+                            <div className="d-flex justify-content-center mt-4">
+                                <Link to="/budgets" className="btn btn-custom w-25 rounded-3 m-2">
+                                    View Your Budgets
+                                </Link>
+                                <Link to="/create-budget" className="btn btn-custom w-25 rounded-3 m-2">
+                                    Create New Budget
+                                </Link>
+                                <Link to="/" className="btn btn-custom w-25 rounded-3 m-2">
+                                    Home
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            ) : (
+                <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
+                    <div className="bg-white p-3 rounded w-25">
+                        <h2 style={{ textAlign: "center" }}>Please Log In To View Page</h2>
+                        <Link to="/login" className="btn btn-custom w-100 rounded-3 mt-2">Login</Link>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

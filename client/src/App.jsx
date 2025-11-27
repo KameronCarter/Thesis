@@ -7,6 +7,7 @@ import Home from './pages/Home.jsx';
 import Profile from './pages/Profile.jsx';
 import Budgets from './pages/Budgets.jsx';
 import CreateBudget from './pages/CreateBudget.jsx';
+import ChangePassword from './pages/ChangePassword.jsx';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path='/profile' element={<Profile />}></Route>
         <Route path='/budgets' element={<Budgets />}></Route>
         <Route path='/create-budget' element={<CreateBudget />}></Route>
+        <Route path='/change-password' element={<ChangePassword />}></Route>
       </Routes>
     </BrowserRouter>
   )
