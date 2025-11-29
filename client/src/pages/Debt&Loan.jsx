@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar.jsx';
 import './Pages.css';
 
-function Home() {
+function DebtAndLoan() {
     return (
         <>
             <div className="site-background">
@@ -59,4 +59,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default DebtAndLoan;

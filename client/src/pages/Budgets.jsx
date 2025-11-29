@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../components/AuthContext";
 import './Budgets.css';
-import "./home.css";
+import "./Pages.css";
 
 function Budgets() {
     const { user } = useAuth(); // should give { email, _id }

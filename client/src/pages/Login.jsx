@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import './Home.css';
+import './Pages.css';
 import { useAuth } from "../components/AuthContext";
 
 //Dr. Sahu Github: pratapsahu1980

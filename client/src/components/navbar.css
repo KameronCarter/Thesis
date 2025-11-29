@@ -1,13 +1,14 @@
 .navbar {
-    background-color: #333;
+    background-color: maroon;
+    border-radius: 8px;
     padding: 1rem;
-    /* width: 100%; */
+    width: 100%;
 }
 
 
 .navbar ul {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -15,14 +16,21 @@
 }
 
 .navbar li {
-    margin-left: 1rem;
+    margin-left: 5rem;
+    background-color: maroon;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 3px 6px;
+}
+.navbar li:hover {
+    background-color: #640000; /* darker shade on hover */
 }
 
 .navbar a {
-    color: white;
+    color: orange;
     text-decoration: none;
 }
 
 .navbar a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }

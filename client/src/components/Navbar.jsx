@@ -18,18 +18,25 @@ function Navbar() {
     return (
         <nav className="navbar">
             <ul>
-                {isLoggedIn ? (
+                {isLoggedIn ? (  //Creates ternary condition to show different navbars based on login status
                     // When user is logged in
                     <>
                         <li><Link to="/">Home</Link></li>
+                        <li><Link to="/savings">Saving</Link></li>
+                        <li><Link to="/credit">Credit</Link></li>
+                        <li><Link to="/debt-and-loan">Debt & Loan</Link></li>
+                        <li><Link to="/budgeting">Budgeting</Link></li>
                         <li><Link to="/profile">Profile</Link></li>
-                        <li><Link to="/budgets">Budgets</Link></li>
-                        <li><button onClick={handleLogout}>Logout</button></li>
+                        <li><Link onClick={handleLogout}>Logout</Link></li>
                     </>
                 ) : (
-                    // When user is NOT logged in
+                    // When user is not logged in
                     <>
-                        <li><Link to="/profile">Profile</Link></li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/savings">Saving</Link></li>
+                        <li><Link to="/credit">Credit</Link></li>
+                        <li><Link to="/debt-and-loan">Debt & Loan</Link></li>
+                        <li><Link to="/budgeting">Budgeting</Link></li>
                         <li><Link to="/Login">Login/Signup</Link></li>
                     </>
                 )}

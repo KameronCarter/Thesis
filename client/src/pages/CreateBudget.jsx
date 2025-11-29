@@ -13,7 +13,7 @@ Other optional notes is to add a way to delete a profile in the client side.
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import './Home.css';
+import './Pages.css';
 import { useAuth } from "../components/AuthContext";
 
 //Dr. Sahu Github: pratapsahu1980

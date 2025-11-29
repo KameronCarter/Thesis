@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar.jsx';
 import './Pages.css';
 
-function Home() {
+function Savings() {
     return (
         <>
             <div className="site-background">
@@ -19,7 +19,7 @@ function Home() {
                         <div className="main-container">
                             <section className="content">
 
-                                <h4>Introduction to Financial Literacy</h4>
+                                <h4>Introduction to Savings</h4>
 
                                 <p className="left-section">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.
@@ -59,4 +59,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Savings;
