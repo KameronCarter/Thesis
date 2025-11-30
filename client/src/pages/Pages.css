@@ -11,6 +11,8 @@
     background-size: 100px 100px;  /* This sets a fixed size for the background image */
     background-repeat: repeat;  /* This piggybacks off previous line because it repeates the image for the background */
     background-blend-mode: lighten; /* This lightens the background image so it doesn't overpower the content on the required pages */
+    height: 100vh;
+    overflow-y: auto;
 }
 
 .site-shape {  /*Puts the content in a box in the center of the page (Allows me to add a background image later)*/
@@ -22,6 +24,7 @@
     max-width: 5000px;      /* keeps it from getting too wide */
     margin: 20px auto;     /* centers the box */
     box-shadow: 0 20px 60px rgba(0,0,0,0.1);  /* optional shadow */
+    overflow-y: auto; /* Ensures content overflow is handled gracefully */
 }
 
 
@@ -40,8 +43,21 @@
 
 .content h4 {
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-size: 1.5rem;
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 0.5rem;
+}
+
+.footer h6 {
+    font-size: 0.8rem;
+}
+
+.footer a{
+    color: orange;
 }
 
 .right-section {
@@ -62,7 +78,7 @@
     top: 120px;
     /* Adjust based on your header/nav height */
     width: 260px;
-    height: 50vh;
+    height: 80vh;
     background-color: maroon;
     color: orange;
     padding: 15px;
