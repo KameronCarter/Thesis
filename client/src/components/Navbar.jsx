@@ -22,7 +22,7 @@ function Navbar() {
                     // When user is logged in
                     <>
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/savings">Saving</Link></li>
+                        <li><Link to="/savings">Saving & Investing</Link></li>
                         <li><Link to="/credit">Credit</Link></li>
                         <li><Link to="/debt-and-loan">Debt & Loan</Link></li>
                         <li><Link to="/budgeting">Budgeting</Link></li>
@@ -33,7 +33,7 @@ function Navbar() {
                     // When user is not logged in
                     <>
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/savings">Saving</Link></li>
+                        <li><Link to="/savings">Saving & Investing</Link></li>
                         <li><Link to="/credit">Credit</Link></li>
                         <li><Link to="/debt-and-loan">Debt & Loan</Link></li>
                         <li><Link to="/budgeting">Budgeting</Link></li>
