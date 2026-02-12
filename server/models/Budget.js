@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const budgetSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',   // This links the budget to a user
+        ref: 'User',   // This links the budget to a user by creating a reference to the "User"
         required: true
     },
     totalAmount: {
