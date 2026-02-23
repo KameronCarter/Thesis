@@ -36,7 +36,7 @@ function Home() {
                                     <h4 className="right-section"><strong>Three Components</strong></h4>
 
                                     <p className="right-section">
-                                        The first component, <strong>financial knowledge</strong>, refers to an <strong>individual's understanding of financial concepts and products</strong>.
+                                        The first component, <strong>financial knowledge</strong>, refers to an <strong>individual's understanding of financial concepts and products</strong>. Concepts would entail things like net worth, interest rates, and credit scores while products would entail things like credit cards, loans, and investments.
                                         The next component, <strong>financial behavior</strong>, refers to the <strong>actions individuals take regarding their finances</strong>, such as budgeting,
                                         saving, and investing. Last but not least, <strong>financial attitude</strong>, refers to an <strong>individual's mindset and beliefs about money and finances</strong>.
                                         If you are knowledgeable about personal finance topics, practice good financial habits, and have a positive attitude towards money management,
@@ -52,9 +52,9 @@ function Home() {
                                         <strong>Without the knowledge embedded in financial literacy, an individual will have a hard time navigating the economy.</strong>
                                         This has become a global realization with the focus being shifted towards the youth which is, according to the UN, ages 15-24. This age group
                                         can most benefit from financial literacy education due to the fact that college debt is at an all time high. <strong>Being financially literate can help
-                                        you navigate the complexities of student loans, credit cards, and budgeting</strong> for the first time. It can also help you <strong>avoid common financial pitfalls</strong>
-                                        like overspending on things like food, entertainment, and clothing. <strong>By improving your personal finance skills you can set yourself up for a
-                                            successful financial future right after college.</strong>
+                                        you navigate the complexities of student loans, credit cards, and budgeting</strong> for the first time. It can also help you <strong>avoid common financial pitfalls</strong> like 
+                                        overspending on food, entertainment, and clothing. <strong>By improving your personal finance skills you can set yourself up for a
+                                        successful financial future right after college.</strong>
                                     </p>
                                 </div>
                                 <footer className="footer">
