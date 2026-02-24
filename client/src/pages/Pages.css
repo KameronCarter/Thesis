@@ -21,8 +21,7 @@ body {
     /* This piggybacks off previous line because it repeates the image for the background */
     background-blend-mode: lighten;
     /* This lightens the background image so it doesn't overpower the content on the required pages */
-    height: 100vh;
-    overflow-y: auto;
+    min-height: 100vh;
 }
 
 .site-shape {
@@ -40,8 +39,6 @@ body {
     /* centers the box */
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
     /* optional shadow */
-    overflow-y: auto;
-    /* Ensures content overflow is handled gracefully */
 }
 
 
@@ -104,7 +101,7 @@ body {
     border-radius: 8px;
 }
 
-/*Below is styling for buttons for login and signup pages*/
+/*Below is styling for buttons for all pages*/
 .btn-custom {
     background-color: maroon;
     color: orange;
