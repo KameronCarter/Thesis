@@ -115,12 +115,25 @@ body {
     top: 120px;
     /* Adjust based on your header/nav height */
     width: 260px;
-    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    
+    height: auto;      /* scales with content */
+    max-height: calc(100vh - 140px); /* prevents overflow */
+    overflow-y: auto;  /* scroll if content gets too long */
+
     background-color: maroon;
     color: orange;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
+}
+
+.sidebar:hover{
+    background-color: #640000;
+    /* darker shade on hover */
+    color: orange;
+    cursor: default;
 }
 
 /*Below is styling for buttons for all pages*/

@@ -68,9 +68,10 @@ function SavingsAndInvesting() {
                                     <aside className="sidebar">
                                         <h5>Key Takeaways</h5>
                                         <ul>
-                                            <li>Understanding the basics of personal finance is crucial.</li>
-                                            <li>Budgeting helps in managing expenses effectively.</li>
-                                            <li>Saving and investing early can lead to financial security.</li>
+                                            <li>Saving is setting aside money for future use.</li>
+                                            <li>It is crucial to financial stability.</li>
+                                            <li>The earlier you start saving, the more time your money has to grow.</li>
+                                            <li>Personalize your saving strategy based on your financial goals, risk tolerance, and time horizon.</li>
                                         </ul>
                                     </aside>
                                 </div>
@@ -127,9 +128,10 @@ function SavingsAndInvesting() {
                                     <aside className="sidebar">
                                         <h5>Key Takeaways</h5>
                                         <ul>
-                                            <li>Understanding the basics of personal finance is crucial.</li>
-                                            <li>Budgeting helps in managing expenses effectively.</li>
-                                            <li>Saving and investing early can lead to financial security.</li>
+                                            <li>Investing is when you put money into something with the expectation of earning a return.</li>
+                                            <li>You must understand the risks involved in investing and diversify your investments.</li>
+                                            <li>Compound returns is one of the main benefits of investing</li>
+                                            <li>The best methods for you are based on your financial goals, risk tolerance, and time horizon.</li>
                                         </ul>
                                     </aside>
                                 </div>

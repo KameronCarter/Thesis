@@ -31,7 +31,8 @@ function Budgeting() {
                                         About 60% of Americans can't cover a $1,000 emergency expense with savings and 80% struggle with debt <sub>[1]</sub>. This highlights
                                         the need for effective budgeting skills to manage finances and build savings. Budgeting helps individuals track income and expenses so that
                                         they don't spend more than they earn. <strong> The correct budget can help reduce debt, increase savings, prepare for emergencies,
-                                            and achieve financial goals.</strong>
+                                        and achieve financial goals.</strong> Strong budgeting habits can assist you in building a financially free future and prepare you for
+                                        any financial challenges that may come your way.
                                     </p>
                                 </div>
                                 <hr />
@@ -41,7 +42,7 @@ function Budgeting() {
                                     <p className="right-section">
                                         To create a budget, start by <strong>gaining all financial statements</strong>, whether that be bank statements, bills, or pay stubs. Next,
                                         <strong>list all sources of income and all monthly expenses</strong>, including fixed and variable costs (meaning costs that stay the same each month and
-                                        cost that can change). <strong>Then calculate the difference between all incomes and expenses to determine what money is left over or needed</strong>. Once the results are gathered, determine
+                                        cost that can change). <strong>Then calculate the difference between all incomes and expenses to determine what money is left over or needed.</strong> Once the results are gathered, determine
                                         your next course of action, for example, if your expenses are higher than your income, look for areas to cut back or if you have money left over, consider allocating
                                         it towards savings or debt repayment. The key to successful budgeting is to <strong>regularly review and adjust your budget as needed</strong> to stay on track with your financial goals.
                                     </p>

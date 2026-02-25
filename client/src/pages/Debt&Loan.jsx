@@ -66,9 +66,11 @@ function DebtAndLoan() {
                                     <aside className="sidebar">
                                         <h5>Key Takeaways</h5>
                                         <ul>
-                                            <li>Understanding the basics of personal finance is crucial.</li>
-                                            <li>Budgeting helps in managing expenses effectively.</li>
-                                            <li>Saving and investing early can lead to financial security.</li>
+                                            <li>Debt is when you owe someone</li>
+                                            <li>Can come in many forms, secured or unsecured</li>
+                                            <li>It is a tool, that if used correctly can help build credit and achieve financial goals</li>
+                                            <li>To repay debt, determine what you owe, who you owe it to, and what type of debt it is</li>
+                                            <li>Create a repayment plan based on personal financial situation and goals</li>
                                         </ul>
                                     </aside>
                                 </div>
@@ -127,9 +129,11 @@ function DebtAndLoan() {
                                     <aside className="sidebar">
                                         <h5>Key Takeaways</h5>
                                         <ul>
-                                            <li>Understanding the basics of personal finance is crucial.</li>
-                                            <li>Budgeting helps in managing expenses effectively.</li>
-                                            <li>Saving and investing early can lead to financial security.</li>
+                                            <li>Loans are a sum of money borrowed from a lender and expected to be paid back with interest.</li>
+                                            <li>They could be used as a powerful financial tool if used responsibly, for example, to purchase a house</li>
+                                            <li>Two main things to consider: the principal (original amount) and the interest rate (which is the cost charged by the lender for borrowing the money).</li>
+                                            <li>Research the type of loan that is right for you and understand all the terms and conditions before applying.</li>
+                                            <li>It is important to ensure that you can afford the monthly payments and that the loan is not more expensive than necessary.</li>
                                         </ul>
                                     </aside>
                                 </div>

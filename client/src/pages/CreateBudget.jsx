@@ -25,7 +25,7 @@ function CreateBudget() {
 
     const [category, setCategory] = useState("");
     const [error, setError] = useState("");
-    const categories = ["Traditional", "50/30/20", "Debt Repayment"];
+    const categories = ["Traditional", "50/30/20", "Debt Repayment", "Coming Soon: Credit Card Management"];
     const navigate = useNavigate();
     const { isLoggedIn, setIsLoggedIn, user, } = useAuth();
 
@@ -128,6 +128,7 @@ function CreateBudget() {
 
                             <form onSubmit={handleSubmit}>
 
+
                                 <div className="mb-3">
                                     <label htmlFor="category">
                                         <strong>Type of Budget</strong>
@@ -147,35 +148,40 @@ function CreateBudget() {
                                     </select>
                                 </div>
 
-                                <div className="mb-3">
-                                    <label htmlFor="income">
-                                        <strong>Monthly Income</strong>
-                                    </label>
-                                    <input
-                                        type="number"
-                                        placeholder="Enter Monthly Income"
-                                        autoComplete="off"
-                                        name="amount"
-                                        className="form-control rounded-0"
-                                        onChange={(e) => setTotalAmount(e.target.value)}  //Assigns value in input field to setTotalAmount variable
-                                    />
-                                </div>
+                                {(category !== "Coming Soon: Credit Card Management") && (
+                                    <>
+                                        <div className="mb-3">
+                                            <label htmlFor="income">
+                                                <strong>Monthly Income</strong>
+                                            </label>
+                                            <input
+                                                type="number"
+                                                placeholder="Enter Monthly Income"
+                                                autoComplete="off"
+                                                name="amount"
+                                                className="form-control rounded-0"
+                                                onChange={(e) => setTotalAmount(e.target.value)}  //Assigns value in input field to setTotalAmount variable
+                                            />
+                                        </div>
 
 
-                                {category !== "Debt Repayment" && ( //Only show expenses input if not Debt Repayment category since that category uses a different calculation method
-                                    <div className="mb-3">
-                                        <label htmlFor="expenses">
-                                            <strong>Monthly Expenses</strong>
-                                        </label>
-                                        <input
-                                            type="number"
-                                            placeholder="Enter Monthly Expenses"
-                                            autoComplete="off"
-                                            name="expenses"
-                                            className="form-control rounded-0"
-                                            onChange={(e) => setExpenses(e.target.value)}
-                                        />
-                                    </div>
+
+                                        {category !== "Debt Repayment" && ( //Only show expenses input if not Debt Repayment category since that category uses a different calculation method
+                                            <div className="mb-3">
+                                                <label htmlFor="expenses">
+                                                    <strong>Monthly Expenses</strong>
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    placeholder="Enter Monthly Expenses"
+                                                    autoComplete="off"
+                                                    name="expenses"
+                                                    className="form-control rounded-0"
+                                                    onChange={(e) => setExpenses(e.target.value)}
+                                                />
+                                            </div>
+                                        )}
+                                    </>
                                 )}
                                 {category === "Debt Repayment" && (
                                     <>
@@ -215,6 +221,12 @@ function CreateBudget() {
                                             />
                                         </div>
                                     </>
+                                )}
+
+                                {category === "Coming Soon: Credit Card Management" && ( //Only show expenses input if not Debt Repayment category since that category uses a different calculation method
+                                    <div className="mb-3">
+                                        <img src="https://th.bing.com/th/id/OIP._8B9Mu2Hi9MGreFJA7Ql9QHaHa?w=181&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Coming Soon" style={{ width: "100%", height: "auto" }} />
+                                    </div>
                                 )}
 
 
