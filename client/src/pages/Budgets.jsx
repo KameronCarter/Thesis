@@ -62,9 +62,6 @@ function Budgets() {
                                                     );
 
                                                 case "50/30/20":
-                                                case "50-30-20":
-                                                case "fifty/thirty/twenty":
-                                                case "50/20/30":
                                                     return (
                                                         <>
                                                             <h3>{b.category}</h3>
@@ -83,10 +80,10 @@ function Budgets() {
                                                         <>
                                                             <h3>{b.category}</h3>
                                                             <p><strong>Monthly Income:</strong> ${b.totalAmount}</p>
-                                                            <p><strong>Monthly Expenses:</strong> ${b.expenses}</p>
-                                                            <p><strong>Spending Money:</strong> ${b.spendingMoney}</p>
-                                                            <p><strong>Savings Money:</strong> ${b.savingsMoney}</p>
-                                                            <p><strong>Debt Repayment: Undefined as of now</strong></p>
+                                                            <p><strong>Total Debt Amount:</strong> ${b.totalDebt}</p>
+                                                            <p><strong>Monthly Payment:</strong> ${b.monthlyPayment}</p>
+                                                            <p><strong>Interest Rate:</strong> {b.interestRate}%</p>
+                                                            <p><strong>Time Before Paying Off Debt:</strong> {b.monthsNeeded} months</p>
                                                             <button className="btn btn-custom w-100 rounded-3" onClick={() => handleDelete(b._id)}>
                                                                 Delete
                                                             </button>

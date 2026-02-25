@@ -1,11 +1,8 @@
 // Profile Page
 /* Ideas
-Create two buttons: one for viewing profile details(changing password, email, etc.), another for viewing user's budgets.
-
-The button for viewing budgets should also contain a button for creating a new budget 
-that button should replace the div by using document.getElementById to a form to add to budget fields.
-
-Other optional notes is to add a way to delete a profile in the client side.
+- Add dropdown to select budget category instead of having users type it in
+- Maybe allow users to interact with spending money to update how much they have left
+- Add a section to show how much was already spent
 */
 
 //import React from 'react';
@@ -21,25 +18,43 @@ import { useAuth } from "../components/AuthContext";
 function CreateBudget() {
     const [totalAmount, setTotalAmount] = useState("");
     const [expenses, setExpenses] = useState("");
+
+    const [totalDebt, setTotalDebt] = useState("");
+    const [monthlyPayment, setMonthlyPayment] = useState("");
+    const [interestRate, setInterestRate] = useState("");
+
     const [category, setCategory] = useState("");
     const [error, setError] = useState("");
+    const categories = ["Traditional", "50/30/20", "Debt Repayment"];
     const navigate = useNavigate();
     const { isLoggedIn, setIsLoggedIn, user, } = useAuth();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const normalizedCategory = category.toLowerCase();
+        console.log("Normalized Category:", normalizedCategory); // Debugging log
+
+        const payload = { // This payload is what is sent to the backend to create a new budget. 
+            totalAmount: Number(totalAmount),
+            category,
+            normalizedCategory,
+            email: user.email,
+            expenses: expenses ? Number(expenses) : null,
+            totalDebt: totalDebt ? Number(totalDebt) : null,
+            monthlyPayment: monthlyPayment ? Number(monthlyPayment) : null,
+            interestRate: interestRate ? Number(interestRate) : null,
+            monthsNeeded: Number(localStorage.getItem("monthsNeeded")) || null,
+            spendingMoney: Number(localStorage.getItem("spendingMoney")) || null,
+            savingsMoney: Number(localStorage.getItem("savingsMoney")) || null
+        };
 
         switch (normalizedCategory) {
-            case "traditional":
+            case "Traditional":
                 const spendingMoneyTraditional = totalAmount - expenses;
                 localStorage.setItem("spendingMoney", spendingMoneyTraditional);
                 break;
 
             case "50/30/20":
-            case "fifty/thirty/twenty":
-            case "50-30-20":
-            case "50/20/30":
                 const forNeeds = totalAmount * 0.5;
                 const spendingMoney503020 = totalAmount * 0.3;
                 const savingsMoney503020 = totalAmount * 0.2;
@@ -48,11 +63,25 @@ function CreateBudget() {
                 localStorage.setItem("savingsMoney", savingsMoney503020);
                 break;
 
-            case "debt repayment":
-                const spendingMoneyDebt = totalAmount * 0.2;
-                const savingsMoneyDebt = totalAmount * 0.1;
-                localStorage.setItem("spendingMoney", spendingMoneyDebt);
-                localStorage.setItem("savingsMoney", savingsMoneyDebt);
+            case "Debt Repayment":
+                const debt = parseFloat(totalDebt);
+                const payment = parseFloat(monthlyPayment);
+                const annualRate = parseFloat(interestRate);
+
+                const monthlyRate = annualRate / 100 / 12;
+
+                // Check if payment is enough to cover interest
+                if (payment <= monthlyRate * debt) {
+                    setError("Monthly payment is too low. Debt will never be paid off.");
+                    return;
+                }
+
+                const monthsNeeded = Math.ceil(
+                    -Math.log(1 - (monthlyRate * debt) / payment) /
+                    Math.log(1 + monthlyRate)
+                );
+
+                localStorage.setItem("monthsNeeded", monthsNeeded);
                 break;
 
             default:
@@ -60,7 +89,7 @@ function CreateBudget() {
         }
 
 
-        axios.post('http://localhost:3001/create-budget', { totalAmount, category, email: user.email, expenses, spendingMoney: localStorage.getItem("spendingMoney"), savingsMoney: localStorage.getItem("savingsMoney"), forNeeds: localStorage.getItem("forNeeds") })
+        axios.post('http://localhost:3001/create-budget', payload)
             .then(result => {
                 console.log(result);
                 if (result.data === "Budget Created Successfully") {
@@ -85,7 +114,7 @@ function CreateBudget() {
     return (
         <>
             {isLoggedIn ? (
-                <div className="site-background">
+                <div className="alt-background">
                     <div className="d-flex justify-content-center align-items-center vh-100">
                         <div className="bg-white p-3 rounded w-25 shadow-lg">
                             <h2 style={{ textAlign: "center" }}>Create Budget</h2>
@@ -98,25 +127,32 @@ function CreateBudget() {
 
 
                             <form onSubmit={handleSubmit}>
+
                                 <div className="mb-3">
                                     <label htmlFor="category">
                                         <strong>Type of Budget</strong>
                                     </label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter Budget Category"
-                                        autoComplete="off"
+                                    <select
                                         name="category"
                                         className="form-control rounded-0"
-                                        onChange={(e) => setCategory(e.target.value)}  //Assigns value in input field to setCategory variable
-                                    />
+                                        value={category}
+                                        onChange={(e) => setCategory(e.target.value)}
+                                    >
+                                        <option value="">Select Budget Category</option>
+                                        {categories.map((item) => (
+                                            <option key={item} value={item}>
+                                                {item}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
+
                                 <div className="mb-3">
                                     <label htmlFor="income">
                                         <strong>Monthly Income</strong>
                                     </label>
                                     <input
-                                        type="text"
+                                        type="number"
                                         placeholder="Enter Monthly Income"
                                         autoComplete="off"
                                         name="amount"
@@ -124,29 +160,78 @@ function CreateBudget() {
                                         onChange={(e) => setTotalAmount(e.target.value)}  //Assigns value in input field to setTotalAmount variable
                                     />
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="expenses">
-                                        <strong>Monthly Expenses</strong>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter Monthly Expenses"
-                                        autoComplete="off"
-                                        name="expenses"
-                                        className="form-control rounded-0"
-                                        onChange={(e) => setExpenses(e.target.value)}  //Assigns value in input field to setExpenses variable
-                                    />
-                                </div>
+
+
+                                {category !== "Debt Repayment" && ( //Only show expenses input if not Debt Repayment category since that category uses a different calculation method
+                                    <div className="mb-3">
+                                        <label htmlFor="expenses">
+                                            <strong>Monthly Expenses</strong>
+                                        </label>
+                                        <input
+                                            type="number"
+                                            placeholder="Enter Monthly Expenses"
+                                            autoComplete="off"
+                                            name="expenses"
+                                            className="form-control rounded-0"
+                                            onChange={(e) => setExpenses(e.target.value)}
+                                        />
+                                    </div>
+                                )}
+                                {category === "Debt Repayment" && (
+                                    <>
+                                        <div className="mb-3">
+                                            <label>
+                                                <strong>Total Debt</strong>
+                                            </label>
+                                            <input
+                                                type="number"
+                                                placeholder="Enter Total Debt"
+                                                className="form-control rounded-0"
+                                                onChange={(e) => setTotalDebt(e.target.value)}
+                                            />
+                                        </div>
+
+                                        <div className="mb-3">
+                                            <label>
+                                                <strong>Monthly Debt Payment</strong>
+                                            </label>
+                                            <input
+                                                type="number"
+                                                placeholder="Enter Monthly Payment"
+                                                className="form-control rounded-0"
+                                                onChange={(e) => setMonthlyPayment(e.target.value)}
+                                            />
+                                        </div>
+
+                                        <div className="mb-3">
+                                            <label>
+                                                <strong>Interest Rate (Annual %)</strong>
+                                            </label>
+                                            <input
+                                                type="number"
+                                                placeholder="Enter Annual Interest Rate"
+                                                className="form-control rounded-0"
+                                                onChange={(e) => setInterestRate(e.target.value)}
+                                            />
+                                        </div>
+                                    </>
+                                )}
+
+
                                 <button type="submit" className="btn btn-custom w-100 rounded-3">
                                     Create Budget
                                 </button>
+
                             </form>
+
                             <Link to="/profile" className="btn btn-custom w-100 rounded-3 mt-2">
                                 Back to Profile
                             </Link>
+
                             <Link to="/" className="btn btn-custom w-100 rounded-3 mt-2">
                                 Home
                             </Link>
+
                         </div>
                     </div>
                 </div>

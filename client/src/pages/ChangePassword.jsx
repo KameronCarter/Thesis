@@ -47,7 +47,7 @@ function ChangePassword() {
 
     return (
         <>
-            <div className="site-background">
+            <div className="alt-background">
                 <div className=" d-flex justify-content-center align-items-center vh-100 "> {/* Boostrapping to allow background to extend and center the contents on the page */}
                     <div className="bg-white p-3 rounded w-50">
 

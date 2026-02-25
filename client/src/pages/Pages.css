@@ -22,19 +22,41 @@ body {
     background-blend-mode: lighten;
     /* This lightens the background image so it doesn't overpower the content on the required pages */
     min-height: 100vh;
+
+    /* Center the content vertically and horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Added a duplicate of old site-background class for other pages to get the look I wanted back */
+.alt-background {
+    background-image: url("https://tse4.mm.bing.net/th/id/OIP.n9x2RuTnGKepKMO8dEOJSwHaEK?pid=ImgDet&w=174&h=174&c=7&dpr=1.3&o=7&rm=3");
+    background-size: 100px 100px;
+    /* This sets a fixed size for the background image */
+    background-repeat: repeat;
+    /* This piggybacks off previous line because it repeates the image for the background */
+    background-blend-mode: lighten;
+    /* This lightens the background image so it doesn't overpower the content on the required pages */
+    min-height: 100vh;
+
+    /* Center the content vertically and horizontally 
+    display: flex;
+    justify-content: center;
+    align-items: center;*/
 }
 
 .site-shape {
+
     /*Puts the content in a box in the center of the page (Allows me to add a background image later)*/
     border: 1px solid #f95e03;
-    border-radius: 8px;
-    /* optional, makes rounded corners */
+    border-radius: 8px; /* optional, makes rounded corners */
+    
     padding: 20px;
     background-color: #fff;
     width: 80%;
-    /* adjust as needed */
-    max-width: 5000px;
-    /* keeps it from getting too wide */
+    max-width: 5000px; /* keeps it from getting too wide */
+    
     margin: 20px auto;
     /* centers the box */
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);

@@ -56,9 +56,9 @@ app.post('/register', (req, res) => {
 
 app.post('/create-budget', async (req, res) => {
     try {
-        const { totalAmount, category, email, expenses, spendingMoney, savingsMoney } = req.body;
+        const { totalAmount, category, normalizedCategory, email, expenses, spendingMoney, savingsMoney, totalDebt, monthlyPayment, interestRate, monthsNeeded } = req.body;
 
-        if (!totalAmount || !category || !email || !expenses) {
+        if (normalizedCategory !== "debt repayment" && (totalAmount == null || !normalizedCategory || !email || expenses == null)) {
             return res.status(400).json({ error: "Total amount, category, email, and expenses are required." });
         }
 
@@ -67,19 +67,36 @@ app.post('/create-budget', async (req, res) => {
             return res.status(404).json({ error: "User not found." });
         }
 
-        await budgetModel.create({
-            totalAmount,
-            category,
-            expenses,
-            spendingMoney,
-            savingsMoney,
-            userId: user._id
-        });
+        if (normalizedCategory !== "debt repayment") {
+            await budgetModel.create({
+                totalAmount,
+                category,
+                expenses,
+                spendingMoney,
+                savingsMoney,
+                userId: user._id
+            });
+        } else {
+            if (totalDebt == null || monthlyPayment == null || interestRate == null) {
+                return res.status(400).json({ error: "Total debt, monthly payment, and interest rate are required for debt repayment category." });
+            } else {
+                await budgetModel.create({
+                    totalAmount,
+                    category,
+                    totalDebt,
+                    monthlyPayment,
+                    interestRate,
+                    monthsNeeded,
+                    userId: user._id
+                });
+            }
+        }
 
         res.status(201).json("Budget Created Successfully");
     } catch (err) {
         console.error(err);
-        res.status(500).json({ error: "Error creating budget", details: err.message });
+        res.status(500).json({ error: "Error creating budget", details: err.message })
+        console.log(err);
     }
 });
 

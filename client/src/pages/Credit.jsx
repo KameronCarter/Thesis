@@ -6,7 +6,7 @@ function Credit() {
     return (
         <>
             <div className="site-background">
-                <div className="d-flex justify-content-center align-items-center vh-100 ">
+                <div className="d-flex justify-content-center align-items-center ">
                     <div className="site-shape">
                         <header className="header">
                             <h1>FinanceMadeSimple</h1>

@@ -12,7 +12,7 @@ function Profile() {
     return (
         <>
             {isLoggedIn ? (
-                <div className="site-background">
+                <div className=" alt-background ">
                     <div className="d-flex justify-content-center align-items-center vh-100 ">
                         <div className="site-shape">
 

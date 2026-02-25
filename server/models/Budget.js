@@ -16,13 +16,29 @@ const budgetSchema = new mongoose.Schema({
     },
     expenses: {
         type: Number,
-        required: true,
+        required: false,
     },
     spendingMoney: {
         type: Number,
-        required: true,
+        required: false,
     },
     savingsMoney: {
+        type: Number,
+        required: false,
+    },
+    totalDebt: {
+        type: Number,
+        required: false,
+    },
+    monthlyPayment: {
+        type: Number,
+        required: false,
+    },
+    interestRate: {
+        type: Number,
+        required: false,
+    },
+    monthsNeeded: {
         type: Number,
         required: false,
     }
