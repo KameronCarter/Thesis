@@ -96,7 +96,7 @@ function CreateBudget() {
                     if (category === "traditional" || category === "Traditional") {
                         alert("Budget Created Successfully! You have $" + localStorage.getItem("spendingMoney") + " available for spending money each month.");
                     } else {
-                        navigate("/");
+                        navigate("/budgets");
                     }
                 }
 
