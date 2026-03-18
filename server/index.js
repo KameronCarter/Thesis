@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -5,10 +7,14 @@ const userModel = require('./models/User');
 const budgetModel = require('./models/Budget');
 const budgetRoutes = require("./routes/budgets");
 const userRoutes = require("./routes/users");
+const chatRoutes = require("./routes/chatbot");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use("/budgets", budgetRoutes);
+app.use("/users", userRoutes);
+app.use("/api", chatRoutes);
 
 mongoose.connect("mongodb://127.0.0.1:27017/user");
 
@@ -99,10 +105,6 @@ app.post('/create-budget', async (req, res) => {
         console.log(err);
     }
 });
-
-app.use("/budgets", budgetRoutes);
-app.use("/users", userRoutes);
-
 
 
 app.listen(3001, () => {

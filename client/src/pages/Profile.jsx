@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import ChatBot from "../components/Chatbot";
 import './Pages.css';
 import { useAuth } from "../components/AuthContext";
+
 
 function Profile() {
     const { isLoggedIn, user } = useAuth();  // assuming you store user email here
@@ -21,6 +22,7 @@ function Profile() {
                             <p className="d-flex justify-content-center">
                                 Manage your personal information and budgets by clicking on the buttons below.
                             </p>
+                            <ChatBot />
 
                             <div className="container w-50">
                                 <Link to="/change-password" className=" d-flex justify-content-center ">Change Password</Link>
