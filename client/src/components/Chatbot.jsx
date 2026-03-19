@@ -1,26 +1,24 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../pages/ChatBot.css";
+import "../pages/Pages.css"
 
 function ChatBot() {
     const [message, setMessage] = useState("");
     const [chat, setChat] = useState([]);
-
-    // Keep a copy of messages to send to backend including reasoning
     const [messagesForAPI, setMessagesForAPI] = useState([]);
 
     const sendMessage = async () => {
         if (!message.trim()) return;
 
-        // 1️⃣ Add user message locally
         const userMessage = { role: "user", content: message };
         setChat(prev => [...prev, userMessage]);
 
-        // 2️⃣ Add to messages to send to backend
         const updatedMessages = [...messagesForAPI, userMessage];
         setMessagesForAPI(updatedMessages);
 
         try {
-            // 3️⃣ Call Express /chat route
             const res = await axios.post("http://localhost:3001/api/chat", {
                 messages: updatedMessages
             });
@@ -31,7 +29,6 @@ function ChatBot() {
                 reasoning_details: res.data.reasoning_details
             };
 
-            // 4️⃣ Update chat and messagesForAPI to preserve reasoning
             setChat(prev => [...prev, assistantMessage]);
             setMessagesForAPI(prev => [...prev, assistantMessage]);
 
@@ -41,39 +38,59 @@ function ChatBot() {
             setChat(prev => [...prev, errorMsg]);
         }
 
-        // 5️⃣ Clear input
         setMessage("");
     };
 
     return (
-        <div className="chatbot-box p-3 mb-3 border rounded">
-            <h5>Chat Assistant</h5>
+        <div className="chatpage-container d-flex flex-column vh-100 bg-light p-3">
+            <header className="text-center mb-4">
+                <h1 className="display-5">AI Chat Assistant</h1>
+                <p className="text-muted">Ask questions, get advice, or interact with your assistant.</p>
+            </header>
 
-            <div style={{ maxHeight: "200px", overflowY: "auto" }}>
-                {chat.map((msg, index) => (
-                    <div
-                        key={index}
-                        className={`mb-2 ${msg.role === "user" ? "text-end" : "text-start"}`}
+            <div className="chatbot-box">
+                <div className="chatbot-header">Chat Assistant</div>
+
+                <div className="chat-messages">
+                    {chat.map((msg, index) => (
+                        <div
+                            key={index}
+                            className={`chat-message ${msg.role}`}
+                        >
+                            <div className={`chat-bubble ${msg.role}`}>
+                                {msg.content}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="chat-input-area">
+                    <Link to="/" className="btn btn-custom w-25 rounded-3 m-2">
+                        Home
+                    </Link>
+                    <input
+                        type="text"
+                        className="chat-input"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        placeholder="Type a message..."
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") sendMessage();
+                        }}
+                    />
+                    <button
+                        className="btn btn-custom w-25 rounded-3 m-2"
+                        onClick={sendMessage}
                     >
-                        <span className="badge bg-secondary">
-                            {msg.content}
-                        </span>
-                    </div>
-                ))}
+                        Send
+                    </button>
+
+                </div>
             </div>
 
-            <input
-                type="text"
-                className="form-control mb-2"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Type a message..."
-                onKeyDown={(e) => { if (e.key === "Enter") sendMessage(); }}
-            />
-
-            <button className="btn btn-custom w-100" onClick={sendMessage}>
-                Send
-            </button>
+            <footer className="text-center mt-3 text-muted">
+                &copy; {new Date().getFullYear()} Finance Made Simple
+            </footer>
         </div>
     );
 }

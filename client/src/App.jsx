@@ -12,6 +12,7 @@ import Budgeting from './pages/Budgeting.jsx';
 import SavingsAndInvesting from './pages/SavingsAndInvesting.jsx';
 import DebtAndLoan from './pages/Debt&Loan.jsx';
 import Credit from './pages/Credit.jsx';
+import ChatBot from './components/Chatbot.jsx';
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
         <Route path='/credit' element={<Credit />}></Route>
         <Route path='/create-budget' element={<CreateBudget />}></Route>
         <Route path='/change-password' element={<ChangePassword />}></Route>
+        <Route path='/chatpage' element={<ChatBot />}></Route>
       </Routes>
     </BrowserRouter>
   )

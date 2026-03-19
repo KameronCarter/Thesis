@@ -22,10 +22,10 @@ function Profile() {
                             <p className="d-flex justify-content-center">
                                 Manage your personal information and budgets by clicking on the buttons below.
                             </p>
-                            <ChatBot />
 
                             <div className="container w-50">
                                 <Link to="/change-password" className=" d-flex justify-content-center ">Change Password</Link>
+                                <Link to="/chatpage" className=" d-flex justify-content-center ">Chatbot</Link>
                             </div>
 
                             <div className="d-flex justify-content-center mt-4">
